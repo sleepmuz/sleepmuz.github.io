@@ -1,0 +1,518 @@
+<!doctype html>
+
+<html lang="en">
+
+  <head>
+  
+  	<title>Sleep musicalization - Perceive your sleep as a unique musical experience!</title>
+
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/dreams.css" type="text/css">
+	
+	<link rel="stylesheet" href="../static/blue.monday/jplayer.blue.monday.css" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>  
+
+    <script src="../static/js/jQuery.jPlayer.2.1.0/jquery.jplayer.min.js"></script>  
+
+    <script type="text/javascript">
+    <!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+    //-->
+    </script>
+
+    
+	
+	  <script src="../static/js/datetimeutils.js"></script>  
+	  <script src="../static/js/raphael-2.0.1-min.js"></script>  
+	  <script src="../static/js/nightvisualization.js"></script>  
+	
+	  <script type="text/javascript">
+
+	  var sleep_data = undefined;
+	  
+	  $(document).ready(function(){
+	      
+		  $("#jquery_jplayer_1").jPlayer({
+	        ready: function () {
+	          $(this).jPlayer("setMedia", {
+	          	"mp3": "/song/cn8SKWWHRmfc.mp3"
+	          });
+	        },
+	        swfPath: "/static/js/jQuery.jPlayer.2.1.0/",
+	        supplied: "mp3"
+	      });
+		  
+		  if (sleep_data) {
+	          var sleep_plots = new Array();
+	          sleep_plots.push(new SleepStagesPlot("sleep_stages_plot", sleep_data));
+	          sleep_plots.push(new ActigramPlot("actigram_plot", sleep_data));
+	          
+	 	      $(window).resize(function() {
+	            for (var i = 0; i < sleep_plots.length; i++) {
+	              sleep_plots[i].draw();
+	            }
+	          });
+		  }
+
+	    });
+	  
+	  </script>
+	 
+
+    
+    <script type="text/javascript">
+	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-34588748-1']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
+	
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+	<div class="container">
+	  <a class="brand" href="../index.html">Sleep musicalization</a>
+	  
+	  <ul class="nav">
+	    <li><a href="../song.html">Composed songs</a>
+	  </ul>
+	    
+	</div>
+      </div>
+    </div>
+
+    
+
+    
+
+<div class="container" style="margin-top:100px;">
+
+  
+  <div class="row" style="margin-bottom:40px;">
+    <div class="span6">
+    
+	<p>Perceive your sleep as a unique musical experience!</p>
+
+	<p>Sleep musicalization is a novel way of perceiving and experiencing sleep measurement data. 
+	The goal is to help users understand 
+	and analyze their sleeping patterns and eventually improve their sleep. 
+	</p>
+	
+	<p>
+	Musicalization of data provides a whole new way to experience data as a music. 
+	Music has a unique capability to invoke emotions, giving users a novel opportunity 
+	to perceive their data also as innate feelings. 
+	In the case of sleep measurements, musicalization complements the more informative, 
+	no-nonsense visual results with an emotional component towards one's own sleep. 
+	</p>
+	
+	</div>
+    <div class="span6">
+    
+		<p>The musicalization process follows musicological principles when composing a melody, 
+		designing the rhythm and changes in tempo, arranging the accompaniment, 
+		and playing out the music at different levels of volume. 
+		These aspects are inspired but not dictated by the data. 
+		The result of musicalization of eight hours of sleep is an origianal piece of couple 
+		of minutes of music.
+		</p> 
+
+		<p>
+		Sleep analysis in this service is based on the <a href="http://beddit.com">Beddit</a> 
+		sleep measurement sensor. 
+		Sleep measurements and analysis results are retrieved from the Beddit service, 
+		by the user's authorization, and then musicalized by composing a novel piece of music.
+		</p>
+
+		<p>See the Sleep Musicalization home page at <a href="../index.html">sleepmusicalization.net</a> for more information.</p>
+
+	</div>
+  </div>
+  
+  
+  
+  
+  
+  <hr>
+  
+  <div class="row">
+  
+    <div class="span6">
+    	<!-- jquery player -->
+		  <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+		  <div id="jp_container_1" class="jp-audio">
+		    <div class="jp-type-single">
+		      <div class="jp-gui jp-interface">
+		        <ul class="jp-controls">
+		          <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+		          <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+		          <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+		          <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+		          <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+		          <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+		        </ul>
+		        <div class="jp-progress">
+		          <div class="jp-seek-bar">
+		            <div class="jp-play-bar"></div>
+		          </div>
+		        </div>
+		        <div class="jp-volume-bar">
+		          <div class="jp-volume-bar-value"></div>
+		        </div>
+		        <div class="jp-time-holder">
+		          <div class="jp-current-time"></div>
+		          <div class="jp-duration"></div>
+		          <ul class="jp-toggles">
+		            <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+		            <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+		          </ul>
+		        </div>
+		      </div>
+		      <div class="jp-title">
+		        <ul>
+		          <li>Another one bites the (sleep) dust</li>
+		        </ul>
+		      </div>
+		      <div class="jp-no-solution">
+		        <span>Update Required</span>
+		        To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+		      </div>
+		    </div>
+		  </div>
+    
+    </div>
+  
+    <div class="span6">
+
+      <h1>
+      	Another one bites the (sleep) dust
+  		
+      </h1>
+
+	  <p></p>
+
+      <h3>Share this song</h3>
+
+	  <p>Copy-paste the following link to email, discussion, etc:
+  	  <p><input value="http://sleepmusicalization.net/song/cn8SKWWHRmfc" class="span6">      
+
+	</div>
+	
+  </div>
+  
+  
+  
+  <hr>
+  
+  
+
+
+<div class="row">
+    
+    <div class="span6">
+    	<h2>My songs</h2>
+    	
+    	
+    		
+	<p>There are no songs yet</p>
+
+
+    	
+    	
+    </div>
+    
+    <div class="span6">
+    
+    	<h2>Latest songs</h2>
+    	
+    	
+    		
+	<ul class="unstyled">
+	<li style="display: block;">
+		<a class="btn btn-small" href="eZoix60gTbms.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Vonnegut: Player Piano (Venturing Outside the Beaten Path)</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="KjYJjxUdjlq9.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Dream on, baby, dream on...</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="AeqhTfNFnxyh.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Sleeper Agent</h4>
+		<p>Contributed by UFOPOLI</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="OS7nOWJKkwjr.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Wild Trances</h4>
+		<p>Contributed by UFOPOLI</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="wOqbL1icfDNE.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Deep dreams</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="LmiaT5ikDRj3.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Hannun viime yö</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="QhhHK3o85LFw.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>eva 09/11/12</h4>
+		<p>Contributed by eva</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="0GKyU9KIA6Mg.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>I was happy</h4>
+		<p>Contributed by mikko</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="8hQRR20FZ1xX.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Sleep with sick children</h4>
+		<p>Contributed by mleppakorpi</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="thS7WCbYmOGo.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Sigil of Sleep</h4>
+		<p>Contributed by UFOPOLI</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="z4KP4AMUhXqQ.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Zzzzzz....</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="3uSWUGgCQ0Rv.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>First Dreambox</h4>
+		<p>Contributed by UFOPOLI</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="IfojbXxAOyaR.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Harmony sleep 29</h4>
+		<p>Contributed by mikko</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="k3N9xUmwFa65.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>A terrible night?</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="uUUdL8VcJ6NL.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Sunday feelings</h4>
+		<p>Contributed by mikko</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="OoJ7SJg6IeE8.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>My very short night</h4>
+		<p>Contributed by mikko</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="cn8SKWWHRmfc.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Another one bites the (sleep) dust</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="IfGM0o4JrEzO.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Reading and sleeping</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="el2ryfonu52g.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Sleep like a baby</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="XRxx3CUvBLWY.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>mikko 08/27/12</h4>
+		<p>Contributed by mikko</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="UBoZSETBbStg.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>mikko 08/30/12</h4>
+		<p>Contributed by mikko</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="dStElwCijBY8.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Disc O&#39;Very, a summer dream</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="OLXlTPYAnqvE.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>New algorithm 1st test!</h4>
+		<p>Contributed by mikko</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="yfpuP2Wwz92X.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>What is this?</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="cBa8Y8Rdy4cc.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Vappuyön unia</h4>
+		<p>Contributed by Linn</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="Gw8AAE2Lwvdk.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Haba 05/27/12</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="azR87XuK9d6X.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>mikko 05/10/12</h4>
+		<p>Contributed by mikko</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="J2eeC0Bdi2co.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>My sleep 5/23/2012</h4>
+		<p>Contributed by Mikko</p>
+	</li>
+	
+
+	
+	<li style="display: block;">
+		<a class="btn btn-small" href="Tpq5TaaoFUfQ.html" style="float: right;"><i class="icon-headphones"></i> Listen</a>
+		<h4>Beautiful dreamer? 05/16/12</h4>
+		<p>Contributed by discovery</p>
+	</li>
+	</ul>
+
+
+    	
+    </div>
+  </div>
+</div>
+
+
+    
+   
+   	<!-- Facebook like button script -->
+	
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	
+	
+	<!-- Twitter -->
+	
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	
+
+	<!-- Place this render call where appropriate -->
+	
+	<script type="text/javascript">
+	  (function() {
+	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	    po.src = 'https://apis.google.com/js/plusone.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  })();
+	</script>
+  </body>
+
+</html>
